@@ -8,12 +8,6 @@ services:
       POSTGRES_DB: todo
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg-isready -U administrator -d todo"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
   app:
     build: .
     restart: always
@@ -22,6 +16,4 @@ services:
     ports:
       - "6400:6400"
     depends_on:
-      database:
-        condition: service_healthy
-        restart: true
+      - database
