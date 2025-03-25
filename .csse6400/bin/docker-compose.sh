@@ -22,4 +22,3 @@ if [[ $error -ne 0 ]]; then
 fi
 
 docker compose down
-
